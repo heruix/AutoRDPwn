@@ -356,7 +356,7 @@ if($Language -in 'Spanish') {
         else { Write-Host "$txt4" -ForegroundColor Red ; sleep -milliseconds 2000 }}
         'X' { continue }
 
-        default { Write-Host ; Write-Host "$txt4" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}} until ($input -in '1','2','3','4','5','6','X')
+        default { Write-Host ; Write-Host "$txt4" -ForegroundColor Red ; sleep -milliseconds 2000 }}} until ($input -in '1','2','3','4','5','6','X')
    
    if($input -in '1','2','3','4','5'){ $Host.UI.RawUI.ForegroundColor = 'Gray' ; Write-Host ; if($hash){ echo "AutoRDPwn" > credentials.dat
    $user = type credentials.dat ; $password = type credentials.dat | ConvertTo-SecureString -AsPlainText -Force ; del credentials.dat }
