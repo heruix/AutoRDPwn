@@ -399,9 +399,9 @@ if($Language -in 'Spanish') {
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowRemoteRPC /t REG_DWORD /d 1 /f 2>&1> $null
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f 2>&1> $null
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Remote Assistance" /v fAllowToGetHelp /t REG_DWORD /d 1 /f 2>&1> $null
-    REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Remote Assistance" /v fAllowFullControl /t REG_DWORD /d 1 /f 2>&1> $null }
-    $hostname = invoke-command -session $RDP[0] -scriptblock {(systeminfo | findstr /I "host" | select -First 1).split(':')[1].trim()} ; Write-Host ; Write-Host "$txt22"
-    $version = invoke-command -session $RDP[0] -scriptblock {(systeminfo | findstr "Microsoft Windows" | select -First 1).split(':')[1].trim()} ; Write-Host ; Write-Host "$txt23 $hostname.." -ForegroundColor Magenta
+    REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Remote Assistance" /v fAllowFullControl /t REG_DWORD /d 1 /f 2>&1> $null } ; Write-Host ; Write-Host "$txt22"
+    $hostname = invoke-command -session $RDP[0] -scriptblock {(systeminfo | findstr /I "host" | select -First 1).split(':')[1].trim()} ; Write-Host ; Write-Host "$txt23 $hostname.." -ForegroundColor Magenta
+    $version = invoke-command -session $RDP[0] -scriptblock {(systeminfo | findstr "Microsoft Windows" | select -First 1).split(':')[1].trim()} 
     $Host.UI.RawUI.ForegroundColor = 'Gray' ; Write-Host
 
     if ($stickykeys){ invoke-command -session $RDP[0] -scriptblock { 
@@ -410,10 +410,10 @@ if($Language -in 'Spanish') {
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v SecurityLayer /t REG_DWORD /d 0 /f 2>&1> $null
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f 2>&1> $null }}
 
-        if($version -Like '*Server*') { Write-Host "$version $using:txt24"
-        invoke-command -session $RDP[0] -scriptblock { $Host.UI.RawUI.ForegroundColor = 'Yellow' ; Write-Host
+        if($version -Like '*Server*') { Write-Host "$version $txt24"
+        invoke-command -session $RDP[0] -scriptblock { $Host.UI.RawUI.ForegroundColor = 'Yellow'
         (Get-WmiObject -class Win32_TSGeneralSetting -Namespace root\cimv2\terminalservices -Filter "TerminalName='RDP-tcp'").SetUserAuthenticationRequired(0) 2>&1> $null
-        Write-Host "$using:txt25" ; $Host.UI.RawUI.ForegroundColor = 'Gray' ; query session } 
+        Write-Host ; Write-Host "$using:txt25" ; Write-Host ; $Host.UI.RawUI.ForegroundColor = 'Gray' ; query session } 
         Write-Host ; $shadow = Read-Host -Prompt "$txt26"
         if($control -eq 'true') { if($stickykeys){ mstsc /v $computer /admin /f } else { mstsc /v $computer /admin /shadow:$shadow /control /noconsentprompt /prompt /f }}
         else { mstsc /v $computer /admin /shadow:$shadow /noconsentprompt /prompt /f }}
