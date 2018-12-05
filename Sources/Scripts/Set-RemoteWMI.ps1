@@ -1,4 +1,4 @@
-﻿function Set-RemoteWMI
+function Set-RemoteWMI
 {    
 <#
 .SYNOPSIS
