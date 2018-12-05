@@ -1,4 +1,4 @@
-﻿function Set-RemotePSRemoting
+function Set-RemotePSRemoting
 {    
 <#
 .SYNOPSIS
