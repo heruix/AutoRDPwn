@@ -52,8 +52,8 @@ https://darkbyte.net/autordpwn-la-guia-definitiva
 
 
 # Capturas de pantalla
-![autordpwn_es1](https://user-images.githubusercontent.com/34335312/49497407-a7c82880-f868-11e8-9bd7-388bd85ba99d.png)
-![autordpwn_es2](https://user-images.githubusercontent.com/34335312/49497406-a7c82880-f868-11e8-9017-0b755afc621a.png)
+![autordpwn_es1](https://user-images.githubusercontent.com/34335312/49519365-1b862780-f8a1-11e8-9f18-744bf3860059.png)
+![autordpwn_es2](https://user-images.githubusercontent.com/34335312/49519366-1b862780-f8a1-11e8-97f7-555845ef49f4.png)
 
 
 # Licencia
@@ -131,8 +131,8 @@ powershell -ep bypass "cd $env:temp ; iwr https://darkbyte.net/autordpwn.php -ou
 https://darkbyte.net/autordpwn-la-guia-definitiva
 
 # Screenshots
-![autordpwn_en1](https://user-images.githubusercontent.com/34335312/49497408-a860bf00-f868-11e8-8a4b-96d5fb060135.png)
-![autordpwn_en2](https://user-images.githubusercontent.com/34335312/49497405-a7c82880-f868-11e8-9d76-727ef24f342d.png)
+![autordpwn_en1](https://user-images.githubusercontent.com/34335312/49519367-1b862780-f8a1-11e8-9465-ce649b94d4cd.png)
+![autordpwn_en2](https://user-images.githubusercontent.com/34335312/49519364-1b862780-f8a1-11e8-8d80-e00e4c2eb931.png)
 
 
 # License
