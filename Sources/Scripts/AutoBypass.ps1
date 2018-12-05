@@ -12,11 +12,11 @@ REG ADD "HKCU\Console" /v ColorTable05 /t REG_DWORD /d 9967496 /f 2>&1> $null
 REG ADD "HKCU\Console" /v ColorTable06 /t REG_DWORD /d 40129 /f 2>&1> $null
 REG ADD "HKCU\Console" /v ColorTable07 /t REG_DWORD /d 13421772 /f 2>&1> $null
 REG ADD "HKCU\Console" /v ColorTable08 /t REG_DWORD /d 7763574 /f 2>&1> $null
-REG ADD "HKCU\Console" /v ColorTable09 /t REG_DWORD /d 16742459 /f 2>&1> $null
+REG ADD "HKCU\Console" /v ColorTable09 /t REG_DWORD /d 16752700 /f 2>&1> $null
 REG ADD "HKCU\Console" /v ColorTable10 /t REG_DWORD /d 7915030 /f 2>&1> $null
 REG ADD "HKCU\Console" /v ColorTable11 /t REG_DWORD /d 14079585 /f 2>&1> $null
-REG ADD "HKCU\Console" /v ColorTable12 /t REG_DWORD /d 5654759 /f 2>&1> $null
-REG ADD "HKCU\Console" /v ColorTable13 /t REG_DWORD /d 10354868 /f 2>&1> $null
+REG ADD "HKCU\Console" /v ColorTable12 /t REG_DWORD /d 5901010 /f 2>&1> $null
+REG ADD "HKCU\Console" /v ColorTable13 /t REG_DWORD /d 13122740 /f 2>&1> $null
 REG ADD "HKCU\Console" /v ColorTable14 /t REG_DWORD /d 10875385 /f 2>&1> $null
 REG ADD "HKCU\Console" /v ColorTable15 /t REG_DWORD /d 15921906 /f 2>&1> $null
 REG ADD "HKCU\Console\%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe" /t REG_SZ /v FaceName /d Consolas /f 2>&1> $null
